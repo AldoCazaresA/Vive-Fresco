@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>py2flowchart</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.18.0/flowchart.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="proyecto.css">
+    </head>
+    <body>
+        <h1>Diagrama de flujo del menu</h1>
+        <input type = "button" id="custom-button" value = "Regresar" src="proyecto.html" onclick = "location='proyecto.html'">
+        <div id="canvas"></div>
+        <pre id="code" style="display:none"></pre>
+        <script>
+            code= `
+start=>start: start
+operation1=>operation: from py2flowchart import pyfile2flowchart
+subroutine2=>subroutine: pyfile2flowchart('menu.py', 'menu.html')
+output3=>output: print("\nBienvenido al programa de Almacen")
+output4=>output: print("\n********************")
+output5=>output: print("**Menu del Almacen**")
+output6=>output: print("********************")
+output7=>output: print("\n1.- Sumar los productos del Stock")
+output8=>output: print("2.- Calcular si el Stock esta completo")
+output9=>output: print("3.- Calcular si el Stock esta bajo")
+output10=>output: print("4.- Revisar listas de bebidas")
+output11=>output: print("5.- Manejo de inventario")
+output12=>output: print("6.- Informacion del Almacen")
+output13=>output: print("0.- Salida")
+end=>end: end
+start->operation1
+operation1->subroutine2
+subroutine2->output3
+output3->output4
+output4->output5
+output5->output6
+output6->output7
+output7->output8
+output8->output9
+output9->output10
+output10->output11
+output11->output12
+output12->output13
+output13->end
+
+`;
+            chart = flowchart.parse(code);
+            chart.drawSVG('canvas', {"line-width": 2});
+			console.log(code);
+			var code_pre = code.replaceAll("&", "&amp;").replaceAll("<", "&lt;");
+            document.getElementById("code").innerHTML = code_pre;
+        </script>
+		<script>
+		// double click to copy svg to clipboard
+		document.ondblclick = async () => {
+			var svg = document.getElementsByTagName('svg')[0];
+			await navigator.clipboard.writeText(svg.outerHTML);
+		}
+		</script>
+		<!-- see https://github.com/dstang2000/py2flowchart -->
+    </body>
+</html>

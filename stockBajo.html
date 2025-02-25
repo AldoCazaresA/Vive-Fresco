@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>py2flowchart</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.18.0/flowchart.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="proyecto.css">
+    </head>
+    <body>
+        <input type = "button" id="custom-button" value = "Regresar" src="proyecto.html" onclick = "location='proyecto.html'">
+        <h1>Diagrama de flujo del stock bajo</h1>
+        <div id="canvas"></div>
+        <pre id="code" style="display:none"></pre>
+        <script>
+            code= `
+start=>start: start
+operation1=>operation: from py2flowchart import pyfile2flowchart
+subroutine2=>subroutine: pyfile2flowchart('stockBajo.py', 'stockBajo.html')
+input3=>input:         articulo = int(input("Introduce la cantidad de articulos en el stock: "))
+    except Exception as error:
+        print(f"Ha ocurrido un error: {error}")
+        print("\nIngrese solamente números")
+condition4=>condition: if articulo < 100
+output5=>output: print("\nEl stock es bajo, comprar más articulos")
+subroutine6=>subroutine: registrarMovimiento("Stock bajo")
+output7=>output: print("\nEl stock es suficiente")
+subroutine8=>subroutine: registrarMovimiento("Stock suficiente")
+end=>end: end
+start->operation1
+operation1->subroutine2
+subroutine2->input3
+input3->condition4
+condition4(yes)->output5
+output5->subroutine6
+condition4(no)->output7
+output7->subroutine8
+subroutine6->end
+subroutine8->end
+
+`;
+            chart = flowchart.parse(code);
+            chart.drawSVG('canvas', {"line-width": 2});
+			console.log(code);
+			var code_pre = code.replaceAll("&", "&amp;").replaceAll("<", "&lt;");
+            document.getElementById("code").innerHTML = code_pre;
+        </script>
+		<script>
+		// double click to copy svg to clipboard
+		document.ondblclick = async () => {
+			var svg = document.getElementsByTagName('svg')[0];
+			await navigator.clipboard.writeText(svg.outerHTML);
+		}
+		</script>
+		<!-- see https://github.com/dstang2000/py2flowchart -->
+    </body>
+</html>

@@ -1,0 +1,503 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>py2flowchart</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.18.0/flowchart.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="proyecto.css">
+    </head>
+    <body>
+        <h1>Diagrama de flujo del programa completo</h1>
+        <input type = "button" id="custom-button" value = "Regresar" src="proyecto.html" onclick = "location='proyecto.html'">
+        <div id="canvas"></div>
+        <pre id="code" style="display:none"></pre>
+        <script>
+            code= `
+start=>start: start
+operation1=>operation: import os
+operation2=>operation: import csv
+operation3=>operation: from datetime import datetime
+operation4=>operation: from py2flowchart import pyfile2flowchart
+subroutine5=>subroutine: pyfile2flowchart('act4ProyectoVersion4.1.py', 'act4ProyectoVersion4.1.html')
+operation6=>operation: fechaArchivo = "fechaUltima.txt"
+condition7=>condition: if not os.path.exists(fechaArchivo)
+output8=>output:             archivo.write(datetime.now().strftime('%Y-%m-%d'))
+operation9=>operation: pass
+input10=>input:         fechaUltima = archivo.read().strip()
+operation11=>operation: return fechaUltima
+operation12=>operation: fecha_archivo = "fechaUltima.txt"
+output13=>output:         archivo.write(datetime.now().strftime('%Y-%m-%d'))
+operation14=>operation: archivos = [f for f in os.listdir() if f.startswith("movimientos_") and f.endswith(".txt")]
+operation15=>operation: return len(archivos)
+operation16=>operation: fechaActual = datetime.now().strftime('%Y-%m-%d')
+operation17=>operation: fechaUltima = obtenerFechaUltima()
+condition18=>condition: if fechaActual != fechaUltima
+operation19=>operation: contador = 0
+operation20=>operation: contador = contarArchivos()
+subroutine21=>subroutine: actualizarFechaUltima()
+operation22=>operation: nombre_archivo_movimientos = f"movimientos_{fechaActual}({contador + 1}).txt"
+output23=>output:         archivo.write(f"{datetime.now()}: {movimiento}\n")
+input24=>input:         with open(archivoMov, 'r') as archivo:
+            contenido = archivo.read()
+        print("\nContenido del archivo: ")
+        print(contenido)
+    except Exception as error:
+        print("No se pudo leer tu archivo")
+subroutine25=>subroutine: registrarMovimiento("Se inicio el programa")
+output26=>output: print("\nBienvenido al programa de Almacen")
+output27=>output: print("\n********************")
+output28=>output: print("**Menu del Almacen**")
+output29=>output: print("********************")
+output30=>output: print("\n1.- Sumar los productos del Stock")
+output31=>output: print("2.- Calcular si el Stock esta completo")
+output32=>output: print("3.- Calcular si el Stock esta bajo")
+output33=>output: print("4.- Revisar listas de bebidas")
+output34=>output: print("5.- Manejo de inventario")
+output35=>output: print("6.- Informacion del Almacen")
+output36=>output: print("0.- Salida")
+input37=>input:         stock1 = int(input("Introduce el stock del producto 1: "))
+        stock2 = int(input("Introduce el stock del producto 2: "))
+    except Exception as error:
+        print(f"Ha ocurrido un error: {error}")
+        print("\nIngrese solamente números")
+    else:
+        print(f"El stock total es: {stock1 + stock2}")
+        registrarMovimiento(f"El usuario ingreso la cantidad de {stock1} + {stock2} igual a: {stock1 + stock2}")
+input38=>input:         stock1 = int(input("Introduce cantidad de articulos Stock 1: "))
+        stock2 = int(input("Introduce cantidad de articulos Stock 2: "))
+    except Exception as error:
+        print(f"Ha ocurrido un error: {error}")
+        print("\nIngrese solamente números")
+condition39=>condition: if stock1 == 200 and stock2 == 200
+output40=>output: print("\nEl stock esta completo")
+subroutine41=>subroutine: registrarMovimiento("El stock esta completo")
+output42=>output: print("\nStock incompleto, comprar mas articulos")
+subroutine43=>subroutine: registrarMovimiento("Stock incompleto")
+input44=>input:         articulo = int(input("Introduce la cantidad de articulos en el stock: "))
+    except Exception as error:
+        print(f"Ha ocurrido un error: {error}")
+        print("\nIngrese solamente números")
+condition45=>condition: if articulo < 100
+output46=>output: print("\nEl stock es bajo, comprar más articulos")
+subroutine47=>subroutine: registrarMovimiento("Stock bajo")
+output48=>output: print("\nEl stock es suficiente")
+subroutine49=>subroutine: registrarMovimiento("Stock suficiente")
+operation50=>operation: bebidas = ["Coca Cola"]
+condition51=>condition: while True|past
+input52=>input: bebida = input("\nIngresa al Almacen un articulo (o presiona Enter para terminar): ")
+condition53=>condition: if bebida == ""
+output54=>output: print("Finalizando la entrada de bebidas.")
+operation55=>operation: break
+operation56=>operation: bebidas.append(bebida)
+condition57=>condition: if "Coca Cola" in bebidas
+operation58=>operation: bebidas.remove("Coca Cola")
+operation59=>operation: pass
+output60=>output: print("---------------------------------------------------")
+output61=>output: print("Esta es tu bebida más vendida: ", bebidas[0])
+output62=>output: print("\nCuenta las coincidencias de 'Pepsi':", bebidas.count("Pepsi"))
+output63=>output: print("\nEl numero de articulos de la lista:", len(bebidas))
+output64=>output: print("\nLa ultima bebida de tu inventario es:", bebidas[-1])
+output65=>output: print("---------------------------------------------------")
+subroutine66=>subroutine: registrarMovimiento("Se entro al inventario")
+operation67=>operation: inventario = {}
+operation68=>operation:             writer = csv.writer(archivo)
+            for nombre, cantidad in inventario.items():
+                writer.writerow([nombre, cantidad])
+subroutine69=>subroutine: registrarMovimiento("Inventario guardado")
+operation70=>operation:             with open("inventario.csv", "r") as archivo:
+                reader = csv.reader(archivo)
+                for row in reader:
+                    nombre, cantidad = row
+                    inventario[nombre] = int(cantidad)
+            registrarMovimiento("Inventario cargado")
+        except FileNotFoundError:
+            pass
+condition71=>condition: if nombre in inventario
+operation72=>operation: inventario[nombre] += cantidad
+operation73=>operation: inventario[nombre] = cantidad
+subroutine74=>subroutine: guardarInventario()
+subroutine75=>subroutine: registrarMovimiento(f"Articulo agregado: {nombre}, cantidad: {cantidad}")
+condition76=>condition: if nombre in inventario
+operation77=>operation: return inventario[nombre]
+operation78=>operation: return 0
+condition79=>condition: for nombre, cantidad in inventario.items()|past
+output80=>output: print(f"{nombre}: {cantidad} articulos")
+subroutine81=>subroutine: registrarMovimiento("Inventario mostrado")
+condition82=>condition: if nombre in inventario
+operation83=>operation: del inventario[nombre]
+output84=>output: print(f"El articulo '{nombre}' ha sido borrado del inventario.")
+subroutine85=>subroutine: guardarInventario()
+subroutine86=>subroutine: registrarMovimiento(f"Articulo borrado: {nombre}")
+output87=>output: print(f"El artículo '{nombre}' no se encuentra en el inventario.")
+subroutine88=>subroutine: registrarMovimiento(f"El articulo {nombre} no se ha encontrado en el inventario")
+condition89=>condition: if nombre in inventario
+operation90=>operation: inventario[nombre] = cantidad
+output91=>output: print(f"La cantidad del articulo '{nombre}' ha sido actualizada a {cantidad}.")
+subroutine92=>subroutine: guardarInventario()
+subroutine93=>subroutine: registrarMovimiento(f"Articulo actualizado: {nombre}, cantidad: {cantidad}")
+output94=>output: print(f"El artículo '{nombre}' no se encuentra en el inventario.")
+subroutine95=>subroutine: registrarMovimiento(f"El articulo {nombre} no se encuentra en el inventario")
+condition96=>condition: if opcion == "1"
+output97=>output: print("-----------------------------")
+input98=>input: nombre = input("Escribe el nombre del artículo: ")
+input99=>input: cantidad = int(input("Escribe la cantidad del artículo: "))
+subroutine100=>subroutine: agregarArticulo(nombre, cantidad)
+output101=>output: print(f"Se ha agregado {cantidad} articulos de {nombre} al inventario.")
+output102=>output: print("-----------------------------")
+condition103=>condition: if opcion == "2"
+output104=>output: print("-----------------------------")
+input105=>input: nombre = input("Escribe el nombre del artículo: ")
+operation106=>operation: cantidad = verificarArticulo(nombre)
+output107=>output: print(f"Hay {cantidad} articulos de {nombre} en el inventario.")
+output108=>output: print("-----------------------------")
+condition109=>condition: if opcion == "3"
+output110=>output: print("-----------------------------")
+output111=>output: print("Inventario actual:")
+subroutine112=>subroutine: mostrarInventario()
+output113=>output: print("-----------------------------")
+condition114=>condition: if opcion == "4"
+output115=>output: print("-----------------------------")
+input116=>input: nombre = input("Escribe el nombre del artículo a borrar: ")
+subroutine117=>subroutine: borrarArticulo(nombre)
+output118=>output: print("-----------------------------")
+condition119=>condition: if opcion == "5"
+output120=>output: print("-----------------------------")
+input121=>input: nombre = input("Escribe el nombre del artículo a actualizar: ")
+input122=>input: cantidad = int(input("Escribe la nueva cantidad del artículo: "))
+subroutine123=>subroutine: actualizarArticulo(nombre, cantidad)
+output124=>output: print("-----------------------------")
+condition125=>condition: if opcion == "6"
+output126=>output: print("Saliendo del inventario")
+subroutine127=>subroutine: registrarMovimiento("Saliendo del inventario")
+operation128=>operation: return False
+output129=>output: print("Opción no válida. Inténtalo de nuevo.")
+operation130=>operation: return True
+subroutine131=>subroutine: cargarInventario()
+condition132=>condition: while True|past
+output133=>output: print("\n**************************")
+output134=>output: print("       Inventario")
+output135=>output: print("**************************")
+output136=>output: print("1. Agregar artículo")
+output137=>output: print("2. Verificar artículo")
+output138=>output: print("3. Mostrar inventario")
+output139=>output: print("4. Borrar artículo")
+output140=>output: print("5. Actualizar artículo")
+output141=>output: print("6. Salir")
+input142=>input: opcion = input("\nSelecciona una opción: ")
+condition143=>condition: if not inventarioOpcion(opcion)
+operation144=>operation: break
+operation145=>operation: pass
+operation146=>operation:     ("Largo", 120),  
+    ("Ancho", 80),
+    ("Altura", 14),
+    ("Telefono", 8112340958),
+    ("AlturaRacks", 2),
+    ("Direccion", "San Antonio #132 Mty N.L. Mexico")
+    ]
+operation147=>operation: largo = informacion[0][1]
+operation148=>operation: ancho = informacion[1][1]
+operation149=>operation: espacio = largo * ancho
+output150=>output: print(f"\nEspacio de almacenaje: {espacio} m²")
+subroutine151=>subroutine: registrarMovimiento("Espacio de almacenaje mostrado")
+operation152=>operation: altura = informacion[2][1]
+operation153=>operation: alturaRacks = informacion[4][1]
+operation154=>operation: racks = ((altura - 2) / alturaRacks)
+output155=>output: print(f"Se pueden apilar {racks} racks hacia arriba")
+output156=>output: print("---------------------------------------------------")
+subroutine157=>subroutine: registrarMovimiento("Cantidad de racks mostrada")
+output158=>output: print("---------------------------------------------------")
+output159=>output: print("Datos de la empresa:")
+output160=>output: print("\nLargo del almacen:", informacion[0][1],'metros')
+output161=>output: print("Ancho del almacen:", informacion[1][1],'metros')
+output162=>output: print("Altura del almacen:", informacion[2][1],'metros')
+output163=>output: print("La altura de cada racks es:", informacion[4][1],'metros')
+output164=>output: print("Telefono de la empresa:", informacion[3][1])
+output165=>output: print("La direccion del almacen es:", informacion[5][1])
+subroutine166=>subroutine: registrarMovimiento("Datos de la empresa mostrados")
+subroutine167=>subroutine: datosEmpresa()
+subroutine168=>subroutine: mostrarM2()
+subroutine169=>subroutine: mostrarRacks()
+condition170=>condition: if opcion == 0
+output171=>output: print("Saliendo del programa")
+subroutine172=>subroutine: registrarMovimiento("Saliendo del programa")
+subroutine173=>subroutine: leerMovimiento(nombre_archivo_movimientos)
+operation174=>operation: return False
+condition175=>condition: if opcion == 1
+subroutine176=>subroutine: sumarStock()
+subroutine177=>subroutine: registrarMovimiento("Sumar productos del stock")
+condition178=>condition: if opcion == 2
+subroutine179=>subroutine: stockCompleto()
+subroutine180=>subroutine: registrarMovimiento("Calcular si el stock está completo")
+condition181=>condition: if opcion == 3
+subroutine182=>subroutine: stockBajo()
+subroutine183=>subroutine: registrarMovimiento("Calcular si el stock está bajo")
+condition184=>condition: if opcion == 4
+subroutine185=>subroutine: listaBebidas()
+subroutine186=>subroutine: registrarMovimiento("Revisar listas de bebidas")
+condition187=>condition: if opcion == 5
+subroutine188=>subroutine: manejoInventario()
+subroutine189=>subroutine: registrarMovimiento("Manejo de inventario")
+condition190=>condition: if opcion == 6
+subroutine191=>subroutine: infoAlmacen()
+subroutine192=>subroutine: registrarMovimiento("Información del almacén")
+output193=>output: print("\nOpción no válida, por favor intente de nuevo.")
+subroutine194=>subroutine: registrarMovimiento("Opción no válida seleccionada")
+operation195=>operation: return True
+condition196=>condition: while True|past
+subroutine197=>subroutine: menu()
+input198=>input: opcion = int(input("\nElije una opcion: "))
+condition199=>condition: if not opciones(opcion)
+operation200=>operation: break
+operation201=>operation: pass
+end=>end: end
+start->operation1
+operation1->operation2
+operation2->operation3
+operation3->operation4
+operation4->subroutine5
+subroutine5->operation6
+operation6->condition7
+condition7(yes)->output8
+condition7(no)->operation9
+output8->input10
+operation9->input10
+input10->operation11
+operation11->operation12
+operation12->output13
+output13->operation14
+operation14->operation15
+operation15->operation16
+operation16->operation17
+operation17->condition18
+condition18(yes)->operation19
+condition18(no)->operation20
+operation19->subroutine21
+operation20->subroutine21
+subroutine21->operation22
+operation22->output23
+output23->input24
+input24->subroutine25
+subroutine25->output26
+output26->output27
+output27->output28
+output28->output29
+output29->output30
+output30->output31
+output31->output32
+output32->output33
+output33->output34
+output34->output35
+output35->output36
+output36->input37
+input37->input38
+input38->condition39
+condition39(yes)->output40
+output40->subroutine41
+condition39(no)->output42
+output42->subroutine43
+subroutine41->input44
+subroutine43->input44
+input44->condition45
+condition45(yes)->output46
+output46->subroutine47
+condition45(no)->output48
+output48->subroutine49
+subroutine47->operation50
+subroutine49->operation50
+operation50->condition51
+condition51(yes)->input52
+input52->condition53
+condition53(yes)->output54
+output54->operation55
+condition53(no)->operation56
+operation56->condition57
+condition57(yes)->operation58
+condition57(no)->operation59
+operation58->output60
+operation59->output60
+output60->output61
+output61->output62
+output62->output63
+output63->output64
+output64->output65
+operation55->condition51
+output65->condition51
+condition51(no)->subroutine66
+subroutine66->operation67
+operation67->operation68
+operation68->subroutine69
+subroutine69->operation70
+operation70->condition71
+condition71(yes)->operation72
+condition71(no)->operation73
+operation72->subroutine74
+operation73->subroutine74
+subroutine74->subroutine75
+subroutine75->condition76
+condition76(yes)->operation77
+condition76(no)->operation78
+operation77->condition79
+operation78->condition79
+condition79(yes)->output80
+output80(left)->condition79
+condition79(no)->subroutine81
+subroutine81->condition82
+condition82(yes)->operation83
+operation83->output84
+output84->subroutine85
+subroutine85->subroutine86
+condition82(no)->output87
+output87->subroutine88
+subroutine86->condition89
+subroutine88->condition89
+condition89(yes)->operation90
+operation90->output91
+output91->subroutine92
+subroutine92->subroutine93
+condition89(no)->output94
+output94->subroutine95
+subroutine93->condition96
+subroutine95->condition96
+condition96(yes)->output97
+output97->input98
+input98->input99
+input99->subroutine100
+subroutine100->output101
+output101->output102
+condition96(no)->condition103
+condition103(yes)->output104
+output104->input105
+input105->operation106
+operation106->output107
+output107->output108
+condition103(no)->condition109
+condition109(yes)->output110
+output110->output111
+output111->subroutine112
+subroutine112->output113
+condition109(no)->condition114
+condition114(yes)->output115
+output115->input116
+input116->subroutine117
+subroutine117->output118
+condition114(no)->condition119
+condition119(yes)->output120
+output120->input121
+input121->input122
+input122->subroutine123
+subroutine123->output124
+condition119(no)->condition125
+condition125(yes)->output126
+output126->subroutine127
+subroutine127->operation128
+condition125(no)->output129
+output102->operation130
+output108->operation130
+output113->operation130
+output118->operation130
+output124->operation130
+operation128->operation130
+output129->operation130
+operation130->subroutine131
+subroutine131->condition132
+condition132(yes)->output133
+output133->output134
+output134->output135
+output135->output136
+output136->output137
+output137->output138
+output138->output139
+output139->output140
+output140->output141
+output141->input142
+input142->condition143
+condition143(yes)->operation144
+condition143(no)->operation145
+operation144->condition132
+operation145->condition132
+condition132(no)->operation146
+operation146->operation147
+operation147->operation148
+operation148->operation149
+operation149->output150
+output150->subroutine151
+subroutine151->operation152
+operation152->operation153
+operation153->operation154
+operation154->output155
+output155->output156
+output156->subroutine157
+subroutine157->output158
+output158->output159
+output159->output160
+output160->output161
+output161->output162
+output162->output163
+output163->output164
+output164->output165
+output165->subroutine166
+subroutine166->subroutine167
+subroutine167->subroutine168
+subroutine168->subroutine169
+subroutine169->condition170
+condition170(yes)->output171
+output171->subroutine172
+subroutine172->subroutine173
+subroutine173->operation174
+condition170(no)->condition175
+condition175(yes)->subroutine176
+subroutine176->subroutine177
+condition175(no)->condition178
+condition178(yes)->subroutine179
+subroutine179->subroutine180
+condition178(no)->condition181
+condition181(yes)->subroutine182
+subroutine182->subroutine183
+condition181(no)->condition184
+condition184(yes)->subroutine185
+subroutine185->subroutine186
+condition184(no)->condition187
+condition187(yes)->subroutine188
+subroutine188->subroutine189
+condition187(no)->condition190
+condition190(yes)->subroutine191
+subroutine191->subroutine192
+condition190(no)->output193
+output193->subroutine194
+operation174->operation195
+subroutine177->operation195
+subroutine180->operation195
+subroutine183->operation195
+subroutine186->operation195
+subroutine189->operation195
+subroutine192->operation195
+subroutine194->operation195
+operation195->condition196
+condition196(yes)->subroutine197
+subroutine197->input198
+input198->condition199
+condition199(yes)->operation200
+condition199(no)->operation201
+operation200->condition196
+operation201->condition196
+condition196(no)->end
+
+`;
+            chart = flowchart.parse(code);
+            chart.drawSVG('canvas', {"line-width": 2});
+			console.log(code);
+			var code_pre = code.replaceAll("&", "&amp;").replaceAll("<", "&lt;");
+            document.getElementById("code").innerHTML = code_pre;
+        </script>
+		<script>
+		// double click to copy svg to clipboard
+		document.ondblclick = async () => {
+			var svg = document.getElementsByTagName('svg')[0];
+			await navigator.clipboard.writeText(svg.outerHTML);
+		}
+		</script>
+		<!-- see https://github.com/dstang2000/py2flowchart -->
+    </body>
+</html>

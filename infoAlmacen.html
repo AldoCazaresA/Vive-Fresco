@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>py2flowchart</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.18.0/flowchart.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="proyecto.css">
+    </head>
+    <body>
+        <h1>Diagrama de flujo de la informacion del almacen</h1>
+        <input type = "button" id="custom-button" value = "Regresar" src="proyecto.html" onclick = "location='proyecto.html'">
+        <div id="canvas"></div>
+        <pre id="code" style="display:none"></pre>
+        <script>
+            code= `
+start=>start: start
+operation1=>operation: from py2flowchart import pyfile2flowchart
+subroutine2=>subroutine: pyfile2flowchart('infoAlmacen.py', 'infoAlmacen.html')
+operation3=>operation:     ("Largo", 120),  
+    ("Ancho", 80),
+    ("Altura", 14),
+    ("Telefono", 8112340958),
+    ("AlturaRacks", 2),
+    ("Direccion", "San Antonio #132 Mty N.L. Mexico")
+    ]
+operation4=>operation: largo = informacion[0][1]
+operation5=>operation: ancho = informacion[1][1]
+operation6=>operation: espacio = largo * ancho
+output7=>output: print(f"\nEspacio de almacenaje: {espacio} m²")
+subroutine8=>subroutine: registrarMovimiento("Espacio de almacenaje mostrado")
+operation9=>operation: altura = informacion[2][1]
+operation10=>operation: alturaRacks = informacion[4][1]
+operation11=>operation: racks = ((altura - 2) / alturaRacks)
+output12=>output: print(f"Se pueden apilar {racks} racks hacia arriba")
+output13=>output: print("---------------------------------------------------")
+subroutine14=>subroutine: registrarMovimiento("Cantidad de racks mostrada")
+output15=>output: print("---------------------------------------------------")
+output16=>output: print("Datos de la empresa:")
+output17=>output: print("\nLargo del almacen:", informacion[0][1],'metros')
+output18=>output: print("Ancho del almacen:", informacion[1][1],'metros')
+output19=>output: print("Altura del almacen:", informacion[2][1],'metros')
+output20=>output: print("La altura de cada racks es:", informacion[4][1],'metros')
+output21=>output: print("Telefono de la empresa:", informacion[3][1])
+output22=>output: print("La direccion del almacen es:", informacion[5][1])
+subroutine23=>subroutine: registrarMovimiento("Datos de la empresa mostrados")
+subroutine24=>subroutine: datosEmpresa()
+subroutine25=>subroutine: mostrarM2()
+subroutine26=>subroutine: mostrarRacks()
+end=>end: end
+start->operation1
+operation1->subroutine2
+subroutine2->operation3
+operation3->operation4
+operation4->operation5
+operation5->operation6
+operation6->output7
+output7->subroutine8
+subroutine8->operation9
+operation9->operation10
+operation10->operation11
+operation11->output12
+output12->output13
+output13->subroutine14
+subroutine14->output15
+output15->output16
+output16->output17
+output17->output18
+output18->output19
+output19->output20
+output20->output21
+output21->output22
+output22->subroutine23
+subroutine23->subroutine24
+subroutine24->subroutine25
+subroutine25->subroutine26
+subroutine26->end
+
+`;
+            chart = flowchart.parse(code);
+            chart.drawSVG('canvas', {"line-width": 2});
+			console.log(code);
+			var code_pre = code.replaceAll("&", "&amp;").replaceAll("<", "&lt;");
+            document.getElementById("code").innerHTML = code_pre;
+        </script>
+		<script>
+		// double click to copy svg to clipboard
+		document.ondblclick = async () => {
+			var svg = document.getElementsByTagName('svg')[0];
+			await navigator.clipboard.writeText(svg.outerHTML);
+		}
+		</script>
+		<!-- see https://github.com/dstang2000/py2flowchart -->
+    </body>
+</html>

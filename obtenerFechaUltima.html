@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>py2flowchart</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.18.0/flowchart.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="proyecto.css">
+    </head>
+    <body>
+        <h1>Diagrama de flujo para obtener la ultima fecha</h1>
+        <input type = "button" id="custom-button" value = "Regresar" src="proyecto.html" onclick = "location='proyecto.html'">
+        <div id="canvas"></div>
+        <pre id="code" style="display:none"></pre>
+        <script>
+            code= `
+start=>start: start
+operation1=>operation: import os
+operation2=>operation: from datetime import datetime
+operation3=>operation: from py2flowchart import pyfile2flowchart
+subroutine4=>subroutine: pyfile2flowchart('obtenerFechaUltima.py', 'obtenerFechaUltima.html')
+operation5=>operation: fechaArchivo = "fechaUltima.txt"
+condition6=>condition: if not os.path.exists(fechaArchivo)
+output7=>output:             archivo.write(datetime.now().strftime('%Y-%m-%d'))
+operation8=>operation: pass
+input9=>input:         fechaUltima = archivo.read().strip()
+operation10=>operation: return fechaUltima
+end=>end: end
+start->operation1
+operation1->operation2
+operation2->operation3
+operation3->subroutine4
+subroutine4->operation5
+operation5->condition6
+condition6(yes)->output7
+condition6(no)->operation8
+output7->input9
+operation8->input9
+input9->operation10
+operation10->end
+
+`;
+            chart = flowchart.parse(code);
+            chart.drawSVG('canvas', {"line-width": 2});
+			console.log(code);
+			var code_pre = code.replaceAll("&", "&amp;").replaceAll("<", "&lt;");
+            document.getElementById("code").innerHTML = code_pre;
+        </script>
+		<script>
+		// double click to copy svg to clipboard
+		document.ondblclick = async () => {
+			var svg = document.getElementsByTagName('svg')[0];
+			await navigator.clipboard.writeText(svg.outerHTML);
+		}
+		</script>
+		<!-- see https://github.com/dstang2000/py2flowchart -->
+    </body>
+</html>

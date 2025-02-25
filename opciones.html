@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>py2flowchart</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.18.0/flowchart.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="proyecto.css">
+    </head>
+    <body>
+        <h1>Diagrama de flujo de opciones</h1>
+        <input type = "button" id="custom-button" value = "Regresar" src="proyecto.html" onclick = "location='proyecto.html'">
+        <div id="canvas"></div>
+        <pre id="code" style="display:none"></pre>
+        <script>
+            code= `
+start=>start: start
+operation1=>operation: from py2flowchart import pyfile2flowchart
+subroutine2=>subroutine: pyfile2flowchart('opciones.py', 'opciones.html')
+condition3=>condition: if opcion == 0
+output4=>output: print("Saliendo del programa")
+subroutine5=>subroutine: registrarMovimiento("Saliendo del programa")
+subroutine6=>subroutine: leerMovimiento(nombre_archivo_movimientos)
+operation7=>operation: return False
+condition8=>condition: if opcion == 1
+subroutine9=>subroutine: sumarStock()
+subroutine10=>subroutine: registrarMovimiento("Sumar productos del stock")
+condition11=>condition: if opcion == 2
+subroutine12=>subroutine: stockCompleto()
+subroutine13=>subroutine: registrarMovimiento("Calcular si el stock está completo")
+condition14=>condition: if opcion == 3
+subroutine15=>subroutine: stockBajo()
+subroutine16=>subroutine: registrarMovimiento("Calcular si el stock está bajo")
+condition17=>condition: if opcion == 4
+subroutine18=>subroutine: listaBebidas()
+subroutine19=>subroutine: registrarMovimiento("Revisar listas de bebidas")
+condition20=>condition: if opcion == 5
+subroutine21=>subroutine: manejoInventario()
+subroutine22=>subroutine: registrarMovimiento("Manejo de inventario")
+condition23=>condition: if opcion == 6
+subroutine24=>subroutine: infoAlmacen()
+subroutine25=>subroutine: registrarMovimiento("Información del almacén")
+output26=>output: print("\nOpción no válida, por favor intente de nuevo.")
+subroutine27=>subroutine: registrarMovimiento("Opción no válida seleccionada")
+operation28=>operation: return True
+end=>end: end
+start->operation1
+operation1->subroutine2
+subroutine2->condition3
+condition3(yes)->output4
+output4->subroutine5
+subroutine5->subroutine6
+subroutine6->operation7
+condition3(no)->condition8
+condition8(yes)->subroutine9
+subroutine9->subroutine10
+condition8(no)->condition11
+condition11(yes)->subroutine12
+subroutine12->subroutine13
+condition11(no)->condition14
+condition14(yes)->subroutine15
+subroutine15->subroutine16
+condition14(no)->condition17
+condition17(yes)->subroutine18
+subroutine18->subroutine19
+condition17(no)->condition20
+condition20(yes)->subroutine21
+subroutine21->subroutine22
+condition20(no)->condition23
+condition23(yes)->subroutine24
+subroutine24->subroutine25
+condition23(no)->output26
+output26->subroutine27
+operation7->operation28
+subroutine10->operation28
+subroutine13->operation28
+subroutine16->operation28
+subroutine19->operation28
+subroutine22->operation28
+subroutine25->operation28
+subroutine27->operation28
+operation28->end
+
+`;
+            chart = flowchart.parse(code);
+            chart.drawSVG('canvas', {"line-width": 2});
+			console.log(code);
+			var code_pre = code.replaceAll("&", "&amp;").replaceAll("<", "&lt;");
+            document.getElementById("code").innerHTML = code_pre;
+        </script>
+		<script>
+		// double click to copy svg to clipboard
+		document.ondblclick = async () => {
+			var svg = document.getElementsByTagName('svg')[0];
+			await navigator.clipboard.writeText(svg.outerHTML);
+		}
+		</script>
+		<!-- see https://github.com/dstang2000/py2flowchart -->
+    </body>
+</html>
