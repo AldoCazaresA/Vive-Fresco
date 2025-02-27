@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vive-Fresco</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" href="logo.ico">
+</head>
+<body>
+    <header>
+        <h1>Vive Fresco</h1>
+        <div id="logo">
+            <img src="logo.jpg" alt="Logo de Vive Fresco">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#introduccion">Introducción</a></li>
+                <li><a href="#antecedentes">Antecedentes</a></li>
+                <li><a href="#descripcion">Descripción</a></li>
+                <li><a href="#demostracion">Demostración</a></li>
+                <li><a href="#desafios">Desafíos</a></li>
+                <li><a href="#futuro">Futuro</a></li>
+                <li><a href="#conclusion">Conclusión</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="introduccion">
+        <h2>Introducción</h2>
+        <p><strong>Proyecto: </strong>Vive Fresco</p>
+        <p><strong>Equipo:</strong></p>
+        <p>Aldo Cázares - Lider y desarrollador</p>
+        <p>Jesús Beltran - Lider y desarrollador</p>
+        <p>Cesar Rosas - Lider y desarrollador</p>
+    </section>
+
+    <section id="antecedentes">
+        <h2>Antecedentes</h2>
+        <p><strong>Motivación: </strong>Observamos que muchos almacenes aún llevan el control de inventario de manera manual, lo que puede generar errores, pérdidas de productos y falta de control en las entradas y salidas. Queríamos automatizar este proceso con un software accesible y funcional.</p>
+        <p><strong>Definicion del problema: </strong>Falta de control en el inventario de almacenes de bebidas.
+            Errores humanos en el registro de entradas y salidas de productos.
+            Dificultad para identificar cuándo el stock está bajo o completo.
+            No contar con un historial estructurado de movimientos.</p>
+    </section>
+
+    <section id="descripcion">
+        <h2>Descripción del Proyecto</h2>
+        <p><strong>Tecnologias usadas: </strong></p>
+        <p><strong>Lenguaje: </strong>Python</p>
+        <p><strong>Bibliotecas: </strong>os, csv, datetime, qrcode y py2flowchart</p>
+        <p><strong>Almacenamiento: </strong>CSV y Archivos de texto (txt)</p>
+        <p><strong>Interfaz: </strong>Consola</p>
+        <p><strong>Arquitectura del sistema: </strong><a href="https://aldocazaresa.github.io/Vive-Fresco/index.html">Diagramas de flujo</a></p>
+        <p><strong>Funcionalidades principales: </strong></p>
+        <ol>
+            <li>Creacion de codigos QR para acceso rapido a informacion del proyecto</li>
+            <li>Creacion de diagramas de flujo</li>
+            <li>CRUD en inventario</li>
+            <li>Calculo de stock completo</li>
+            <li>Alertas de stock bajo o completo</li>
+            <li>Mostrar informacion general</li>
+        </ol>
+    </section>
+
+    <section id="demostracion">
+        <h2>Demostración</h2>
+        <p>Video o imágenes mostrando cómo funciona el proyecto.</p>
+    </section>
+
+    <section id="desafios">
+        <h2>Desafíos y Soluciones</h2>
+        <p><strong>Problemas encontrados:</strong></p>
+        <ol>
+            <li>Manejo de archivos para guardar registros sin corrupción de datos</li>
+            <li>Optimización del menú para facilitar la navegación del usuario</li>
+            <li>Implementación de funciones de seguridad para evitar datos inválidos</li>
+            <li>Creacion del nombre de los archivos txt con la fecha y numero contador</li>
+        </ol>
+        <p><strong>Soluciones implementadas:</strong></p>
+        <ol>
+            <li>Uso de archivos .txt y .csv con estructura clara y fácil de leer</li>
+            <li>Validaciones en todas las entradas del usuario para evitar errores</li>
+            <li>Registros automáticos en archivos de historial para seguimiento preciso</li>
+            <li>Uso de la biblioteca datetime para obtener la fecha y hora actual ademas de crear una funcion para crear un contador y agregarlo al nombre del archivo</li>
+        </ol>
+    </section>
+
+    <section id="futuro">
+        <h2>Futuro del Proyecto</h2>
+        <p><strong>Mejoras futuras:</strong></p>
+        <ol>
+            <li>Implementación de una interfaz gráfica para mayor accesibilidad</li>
+            <li>Base de datos en lugar de archivos de texto para mayor escalabilidad</li>
+            <li>Integración con lectores de código de barras para agilizar el registro de productos</li>
+        </ol>
+        <p><strong>Potencial de escalabilidad:</strong></p>
+        <ol>
+            <li>Podría expandirse para gestionar no solo bebidas, sino cualquier tipo de inventario</li>
+            <li>Se podría convertir en un software con múltiples usuarios y acceso remoto</li>
+        </ol>
+    </section>
+
+    <section id="conclusion">
+        <h2>Conclusión</h2>
+        <p>Aprendimos a trabajar con archivos en Python para almacenar datos de manera eficiente, segura y estructurada.
+            Mejoramos nuestras habilidades en validaciones de entrada y manejo de errores.
+            Nos dimos cuenta de la importancia de mantener un código limpio y estructurado para facilitar futuras mejoras, 
+            además del uso de librerias para añadir funcionalidades al proyecto.</p>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Presentación del Proyecto Vive-Fresco</p>
+    </footer>
+</body>
+</html>
