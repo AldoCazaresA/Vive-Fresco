@@ -86,3 +86,11 @@ body {
     color: black;
     border: 2px solid #147ca5;
 }
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
